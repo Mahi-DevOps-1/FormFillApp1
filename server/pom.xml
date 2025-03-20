@@ -53,7 +53,7 @@
                 <version>3.0.0-M7</version>
                 <configuration>
                     <includes>
-                        <include>**/*Greeter.java</include>                      
+                        <include>**/*Test.java</include>  <!-- Match all test classes -->
                     </includes>
                 </configuration>
             </plugin>

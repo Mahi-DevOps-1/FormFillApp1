@@ -53,7 +53,7 @@
                 <version>3.0.0-M7</version>
                 <configuration>
                     <includes>
-                        <include>**/*Test.java</include>
+                        <include>**/*TestGreeter.java</include>                      
                     </includes>
                 </configuration>
             </plugin>

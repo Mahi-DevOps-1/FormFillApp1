@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example.maven-project</groupId>
@@ -10,7 +10,6 @@
     <version>1.0-SNAPSHOT</version>
     <name>WebApp</name>
     <description>Sample Maven project with a working, deployable site.</description>
-    <url>http://www.example.com</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,7 +21,7 @@
     <build>
         <directory>target</directory>
         <finalName>webapp</finalName>
-        
+
         <plugins>
             <!-- Compiler Plugin -->
             <plugin>
@@ -35,7 +34,17 @@
                 </configuration>
             </plugin>
 
-            <!-- WAR Plugin -->
+            <!-- Clean Plugin (Prevents Failure if File is Locked) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <failOnError>false</failOnError>
+                </configuration>
+            </plugin>
+
+            <!-- WAR Plugin (Removed Read-Only 'warName') -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -45,13 +54,14 @@
                 </configuration>
             </plugin>
 
-            <!-- Surefire Plugin for Running Tests -->
+            <!-- Surefire Plugin (Ensures Test Reports are Generated) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M7</version>
                 <configuration>
                     <useFile>false</useFile>
+                    <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
                 </configuration>
             </plugin>
         </plugins>
